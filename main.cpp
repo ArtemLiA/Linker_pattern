@@ -72,7 +72,7 @@ public:
 
 class symbol_generator: public basic_password_generator{
 public:
-    explicit symbol_generator(size_t l = 12): basic_password_generator(l) {};
+    explicit symbol_generator(size_t l = password_default_length::length()): basic_password_generator(l) {};
     std::string allowed_chars() final{
         return "-/.;#@%)*";
     }
@@ -88,7 +88,7 @@ public:
 
 class lower_letter_generator: public basic_password_generator{
 public:
-    explicit lower_letter_generator(size_t l = 12): basic_password_generator(l) {};
+    explicit lower_letter_generator(size_t l = password_default_length::length()): basic_password_generator(l) {};
     std::string allowed_chars() final{
         return "abcdefghklmnioprst"; //Example
     }
@@ -133,7 +133,7 @@ public:
 };
 
 int main() {
-    password_default_length::set_length(16);
+    password_default_length::set_length(19);
     std::cout << password_default_length::length() << std::endl;
     std::shared_ptr<password_generator> cond1(new digit_generator()); //length = 16
     std::shared_ptr<password_generator> cond2(new symbol_generator()); //length = 16
